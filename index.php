@@ -1,12 +1,16 @@
 <?php
-	include ("dbconnect.php");
+
+include ("dbconnect.php");
+
+require_once 'logger.php';
+
 ?>
 
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/syle.css"> 
-</head>
-<body>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/syle.css">
+    </head>
+    <body>
 	
 
 
