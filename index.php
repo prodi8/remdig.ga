@@ -77,12 +77,13 @@ require_once 'logger.php';
                 // для каждой записи организуем вывод.
                 while ($row=mysql_fetch_array($r)){
                     if ($c%2)
-                        $col="bgcolor='#f9f9f9'";	// цвет для четных записей
+                        // цвет для четных записей
+                        $col="bgcolor='#f9f9f9'";	
                     else
-			$col="bgcolor='#f0f0f0'";	// цвет для нечетных записей
+                        // цвет для нечетных записей
+			$col="bgcolor='#f0f0f0'";
                 ?>
-                
-                <table border="0" cellspacing="3" cellpadding="0" width="80%" style="margin: 10px 0px;">
+                <table border="0" cellspacing="3" cellpadding="0" width="80%" <?php echo $col; ?> style="margin: 10px 0px;">
                     <tr>
                         <td width="150" style="color: #999999;">Имя пользователя:</td>
                         <td><?php echo $row['username']; ?></td>
@@ -93,11 +94,11 @@ require_once 'logger.php';
                         <td colspan="2" style="color: #999999;">------------------------------------------</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><?php echo $row['msg']; ?><br></td>>
+                        <td colspan="2"><?php echo $row['msg']; ?><br> </td>>
                     </tr>
                     <tr>
                         <td width="150" style="color: #999999;">id:</td>
-                        <td colspan="2"><?php echo $row['id']; ?><br></td>
+                        <td colspan="2"><?php echo $row['id']; ?><br> </td>
                     </tr>
                 </table>
                 
