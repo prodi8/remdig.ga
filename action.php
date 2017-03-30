@@ -10,13 +10,25 @@ $action = $_REQUEST['action'];
 if ($action=="add"){
     // добавление данных в БД
     $sql = "INSERT INTO gb(username, dt, msg) VALUES ('$username', NOW(), '$msg')";
-    $r = mysql_query($sql);
+    try{
+        $r = mysql_query($sql);
+    } catch (Exception $ex) {
+        Logger::getLogger("root")->log("Insert data failed with query: " . $sql);
+        Logger::getLogger("root")->log("Exception: " . $ex);
+    }
+    
 }
 
 if ($action=="delete"){
     // удаление базы гостевой
     $sql = "DELETE FROM gb";
-    $r = mysql_query($sql);
+    try{
+        $r = mysql_query($sql);
+    } catch (Exception $ex) {
+        Logger::getLogger("root")->log("Delete data failed with query: " . $sql);
+        Logger::getLogger("root")->log("Exception: " . $ex);
+    }
+    
 }
 
 header("Location: index.php");
