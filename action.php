@@ -11,6 +11,7 @@ if ($action=="add"){
     // добавление данных в БД
     $sql = "INSERT INTO gb(username, dt, msg) VALUES ('$username', NOW(), '$msg')";
     try{
+        Logger::getLogger("root")->log("Insert data with query: " . $sql);
         $r = mysql_query($sql);
     } catch (Exception $ex) {
         Logger::getLogger("root")->log("Insert data failed with query: " . $sql);
@@ -23,6 +24,7 @@ if ($action=="delete"){
     // удаление базы гостевой
     $sql = "DELETE FROM gb";
     try{
+        Logger::getLogger("root")->log("Delete data with query: " . $sql);
         $r = mysql_query($sql);
     } catch (Exception $ex) {
         Logger::getLogger("root")->log("Delete data failed with query: " . $sql);
