@@ -13,7 +13,7 @@ require_once 'logger.php';
     <body>
 	
 
-//вносим тестовые изменения
+
 
 <div class="parent">      
  <form name="myForm2" action="action.php" method="post" >
