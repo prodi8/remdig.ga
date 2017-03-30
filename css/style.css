@@ -10,14 +10,14 @@
 .block {
     width: 800px;
     position: absolute;
-	top: 45%;
+    top: 45%;
     left: 40%;
     margin: -125px 0 0 -125px;
 }
 .block2 {
-	width: 600px;
+    width: 600px;
     position: absolute;
-	top: 15%;
+    top: 15%;
     left: 45%;
     margin: -125px 0 0 -125px;
 }
