@@ -94,7 +94,7 @@ require_once 'logger.php';
                         <td colspan="2" style="color: #999999;">------------------------------------------</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><?php echo $row['msg']; ?><br> </td>>
+                        <td colspan="2"><?php echo $row['msg']; ?><br> </td>
                     </tr>
                     <tr>
                         <td width="150" style="color: #999999;">id:</td>
