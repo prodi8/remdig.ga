@@ -2,6 +2,10 @@
 
 include ("dbconnect.php");
 
+require_once dirname(__FILE__) . '/log4php/Logger.php';
+Logger::configure(dirname(__FILE__) . '/log4php.properties', 'LoggerConfiguratorIni');
+$logger = Logger::getRootLogger();
+
 // получаем переменные из формы
 $username = $_REQUEST['username'];
 $msg = $_REQUEST['msg'];
@@ -11,11 +15,11 @@ if ($action=="add"){
     // добавление данных в БД
     $sql = "INSERT INTO gb(username, dt, msg) VALUES ('$username', NOW(), '$msg')";
     try{
-        //Logger::getLogger("root")->log("Insert data with query: " . $sql);
+        $logger->debug("Insert data with query: " . $sql);
         $r = mysql_query($sql);
     } catch (Exception $ex) {
-        Logger::getLogger("root")->log("Insert data failed with query: " . $sql);
-        Logger::getLogger("root")->log("Exception: " . $ex);
+        $logger->error("Failed to insert data with query: " . $sql);
+        $logger->error("Exception: " . $ex);
     }
     
 }
@@ -24,11 +28,11 @@ if ($action=="delete"){
     // удаление базы гостевой
     $sql = "DELETE FROM gb";
     try{
-        //Logger::getLogger("root")->log("Delete data with query: " . $sql);
+        $logger->debug("Delete data with query: " . $sql);
         $r = mysql_query($sql);
     } catch (Exception $ex) {
-        Logger::getLogger("root")->log("Delete data failed with query: " . $sql);
-        Logger::getLogger("root")->log("Exception: " . $ex);
+        $logger->error("Failed to delete data with query: " . $sql);
+        $logger->error("Exception: " . $ex);
     }
     
 }
