@@ -2,12 +2,6 @@
 
 include ("dbconnect.php");
 
-require_once dirname(__FILE__) . '/log4php/Logger.php';
-Logger::configure(dirname(__FILE__) . '/log4php.properties', 'LoggerConfiguratorIni');
-$logger = Logger::getRootLogger();
-
-$logger->warn("Test message");
-
 ?>
 
 <html>
@@ -27,12 +21,12 @@ $logger->warn("Test message");
                 <!-- проверка заполнения формы -->
                 <script>
                     function splash(){
-                        if (document.myForm.username.value === ''){
+                        if (document.myForm.username.value == ''){
                             alert ("Заполните имя пользователя!");
                             return false;
                         }
                         
-                        if (document.myForm.msg.value ===' '){
+                        if (document.myForm.msg.value  ==''){
                             alert ("Заполните текст сообщения!");
                             return false;
                         }
@@ -46,16 +40,26 @@ $logger->warn("Test message");
                     <input type="hidden" name="action" value="add">
                     <table border="0">
                         <tr>
-                            <td width="160">Имя пользователя:</td>
-                            <td><input name="username" style="width: 300px;"></td>
+                            <td width="160">
+                                Имя пользователя:
+                            </td>
+                            <td>
+                                <input name="username" style="width: 300px;">
+                            </td>
                         </tr>
                         <tr>
-                            <td width="160" valign="top">Сообщение:</td>
-                            <td><textarea name="msg" style="width: 300px;"></textarea></td>
+                            <td width="160" valign="top">
+                                Сообщение:
+                            </td>
+                            <td>
+                                <textarea name="msg" style="width: 300px;"></textarea>
+                            </td>
                         </tr>		
                         <tr>
                             <td width="160">&nbsp;</td>
-                            <td><input type="submit" value="Отправить сообщение"></td>
+                            <td>
+                                <input type="submit" value="Отправить сообщение">
+                            </td>
                         </tr>
                     </table>
                 </form>
@@ -70,13 +74,12 @@ $logger->warn("Test message");
                 
                 // для каждой записи организуем вывод.
                 while ($row=mysql_fetch_array($r)){
-                    if ($c%2){
+                    if ($c%2)
                         // цвет для четных записей
-                        $col="bgcolor='#f9f9f9'";
-                    } else {
+                        $col="bgcolor='#f9f9f9'";	
+                    else
                         // цвет для нечетных записей
 			$col="bgcolor='#f0f0f0'";
-                    }
                 ?>
                 <table border="0" cellspacing="3" cellpadding="0" width="80%" <?php echo $col; ?> style="margin: 10px 0px;">
                     <tr>
@@ -101,9 +104,8 @@ $logger->warn("Test message");
                 $c++;
                 }
                 
-                if ($c==0){// если ни одной записи не встретилось
+                if ($c==0) // если ни одной записи не встретилось
                     echo "Гостевая книга пуста!<br>";
-                }
                 ?>
             </div>
         </div>
