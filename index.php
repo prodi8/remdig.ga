@@ -1,6 +1,16 @@
 <?php
-
-include ("dbconnect.php");
+    include ("dbconnect.php");
+    
+    require_once dirname(__FILE__) . '/log4php/Logger.php';
+    Logger::configure(dirname(__FILE__) . '/log4php.properties', 'LoggerConfiguratorIni');
+    $logger = Logger::getRootLogger();
+    
+    session_start();
+    
+    if (!isset($_SESSION["session_username"])){
+        $logger->info("Session was not found. Redirect to login page");
+        header("location:login.php");
+    }
 
 ?>
 
@@ -26,7 +36,7 @@ include ("dbconnect.php");
                             return false;
                         }
                         
-                        if (document.myForm.msg.value  ==''){
+                        if (document.myForm.msg.value  == ''){
                             alert ("Заполните текст сообщения!");
                             return false;
                         }
