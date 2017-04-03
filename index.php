@@ -1,40 +1,31 @@
+<?php require_once("includes/connection.php"); ?>
+<?php include("includes/header.php"); ?>
+
+ <!-- Подключаем сессию-->
 <?php
 
-include ("dbconnect.php");
+session_start();
 
+if(!isset($_SESSION["session_username"])):
+header("location:login.php");
+else:
 ?>
+ 	
+<?php include("includes/header.php"); ?>
+  
 
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-        <div class="parent">   
+
+     <?php include ("dbconnect.php"); ?>
+
+  <div class="parent">  
+      <p><a href="logout.php">Выйти</a> из системы</p>
             <form name="myForm2" action="action.php" method="post" >
                 <input type="submit" name="action" value="delete">
             </form>
             <div class="block2">
                 <h3 align="center">Добавить сообщение</h3>
                 <br>
-                <!-- форма отправки сообщения -->
-
-                <!-- проверка заполнения формы -->
-                <script>
-                    function splash(){
-                        if (document.myForm.username.value == ''){
-                            alert ("Заполните имя пользователя!");
-                            return false;
-                        }
-                        
-                        if (document.myForm.msg.value  ==''){
-                            alert ("Заполните текст сообщения!");
-                            return false;
-                        }
-
-                        return true;
-                    }
-                </script>
-
+               
                 <!-- код формы -->
                 <form name="myForm" action="action.php" method="post" onSubmit="return splash();">
                     <input type="hidden" name="action" value="add">
@@ -44,7 +35,7 @@ include ("dbconnect.php");
                                 Имя пользователя:
                             </td>
                             <td>
-                                <input name="username" style="width: 300px;">
+                                 <span><?php echo $_SESSION['session_username'];?>! </span>
                             </td>
                         </tr>
                         <tr>
@@ -111,3 +102,7 @@ include ("dbconnect.php");
         </div>
     </body>
 </html>
+
+<?php include("includes/footer.php"); ?>
+	
+<?php endif; ?>
