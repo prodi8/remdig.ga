@@ -1,13 +1,4 @@
-<?php require_once("includes/connection.php"); ?>
-<?php include("includes/header.php"); ?>
 <?php
-
-session_start();
-
-if(!isset($_SESSION["session_username"])):
-header("location:login.php");
-else:
-
 
 include ("dbconnect.php");
 
@@ -15,8 +6,16 @@ require_once dirname(__FILE__) . '/log4php/Logger.php';
 Logger::configure(dirname(__FILE__) . '/log4php.properties', 'LoggerConfiguratorIni');
 $logger = Logger::getRootLogger();
 
+    session_start();
+    
+    if (!isset($_SESSION["session_username"])){
+        $logger->info("Session was not found. Redirect to login page");
+        header("location:login.php");
+    }
+
+
 // получаем переменные из формы
-$username = $_SESSION['session_username'];
+$username = $_SESSION["session_full_name"];
 $msg = $_REQUEST['msg'];
 $action = $_REQUEST['action'];
 
