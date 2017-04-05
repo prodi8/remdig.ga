@@ -29,14 +29,14 @@
                 while ($row = mysql_fetch_assoc($query)){
                     $dbusername = $row['username'];
                     $dbpassword=$row['password'];
-					$dbfull_name=$row['full_name'];
+		    $dbfull_name=$row['full_name']; //определили переменную из массива, полученного по запросу к базе данных
                 }
                 
                 if ($username == $dbusername && $password == $dbpassword){
                     // старое место расположения
                     // session_start();
                     $_SESSION['session_username'] = $username;
-                    $_SESSION['session_full_name'] = $dbfull_name;
+                    $_SESSION['session_full_name'] = $dbfull_name;  //добавили переменную в массив сессии
 					
                     $logger->info("Successfully login for [" . $username . "]");
                     
